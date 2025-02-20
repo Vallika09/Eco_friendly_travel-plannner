@@ -10,10 +10,10 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "source")
+    @Column(name = "source", nullable = false, length = 100)
     private String source;
 
-    @Column(name = "destination")
+    @Column(name = "destination", nullable = false, length = 100)
     private String destination;
 
     // Constructors
