@@ -10,18 +10,32 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "source", nullable = false, length = 100)
-    private String source;
+    @ManyToOne
+    @JoinColumn(name = "source_id", nullable = false)
+    private Location source;
 
-    @Column(name = "destination", nullable = false, length = 100)
-    private String destination;
+    @ManyToOne
+    @JoinColumn(name = "destination_id", nullable = false)
+    private Location destination;
+
+    @Column(nullable = false)
+    private double distance; // in kilometers
+
+    @Column(nullable = false)
+    private double travelTime; // in hours
+
+    @Column(nullable = false)
+    private boolean isEcoFriendly; // Marks green routes
 
     // Constructors
     public Route() {}
 
-    public Route(String source, String destination) {
+    public Route(Location source, Location destination, double distance, double travelTime, boolean isEcoFriendly) {
         this.source = source;
         this.destination = destination;
+        this.distance = distance;
+        this.travelTime = travelTime;
+        this.isEcoFriendly = isEcoFriendly;
     }
 
     // Getters and Setters
@@ -33,19 +47,43 @@ public class Route {
         this.id = id;
     }
 
-    public String getSource() {
+    public Location getSource() {
         return source;
     }
 
-    public void setSource(String source) {
+    public void setSource(Location source) {
         this.source = source;
     }
 
-    public String getDestination() {
+    public Location getDestination() {
         return destination;
     }
 
-    public void setDestination(String destination) {
+    public void setDestination(Location destination) {
         this.destination = destination;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public double getTravelTime() {
+        return travelTime;
+    }
+
+    public void setTravelTime(double travelTime) {
+        this.travelTime = travelTime;
+    }
+
+    public boolean isEcoFriendly() {
+        return isEcoFriendly;
+    }
+
+    public void setEcoFriendly(boolean ecoFriendly) {
+        isEcoFriendly = ecoFriendly;
     }
 }
