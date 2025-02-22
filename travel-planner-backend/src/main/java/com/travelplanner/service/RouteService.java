@@ -1,5 +1,5 @@
 package com.travelplanner.service;
-
+import com.travelplanner.model.Location;
 import com.travelplanner.model.Route;
 import com.travelplanner.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ public class RouteService {
     @Autowired
     private RouteRepository routeRepository;
 
-    public List<Route> getRoutesBySourceAndDestination(String source, String destination) {
+    public List<Route> getRoutesBySourceAndDestination(Location source, Location destination) {
         return routeRepository.findBySourceAndDestination(source, destination);
     }
 
