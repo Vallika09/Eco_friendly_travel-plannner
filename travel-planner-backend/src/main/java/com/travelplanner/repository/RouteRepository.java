@@ -1,5 +1,5 @@
 package com.travelplanner.repository;
-
+import com.travelplanner.model.Location;
 import com.travelplanner.model.Route;
 
 import java.util.List;
@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RouteRepository extends JpaRepository<Route, Long> {
 
-	List<Route> findBySourceAndDestination(String source, String destination);
+	List<Route> findBySourceAndDestination(Location source, Location destination);
 }
