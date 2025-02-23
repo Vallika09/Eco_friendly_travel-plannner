@@ -1,4 +1,5 @@
 package com.travelplanner.service;
+
 import com.travelplanner.model.Location;
 import com.travelplanner.model.Route;
 import com.travelplanner.repository.RouteRepository;
@@ -13,7 +14,7 @@ public class RouteService {
     private RouteRepository routeRepository;
 
     public List<Route> getRoutesBySourceAndDestination(Location source, Location destination) {
-        return routeRepository.findBySourceAndDestination(source, destination);
+        return routeRepository.findByStartLocationAndEndLocation(source, destination); // ✅ Corrected method name
     }
 
     public Route saveRoute(Route route) {

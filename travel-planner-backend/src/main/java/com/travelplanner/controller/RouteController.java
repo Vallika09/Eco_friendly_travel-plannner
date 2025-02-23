@@ -1,26 +1,22 @@
 package com.travelplanner.controller;
-import com.travelplanner.model.Location;
+
 import com.travelplanner.model.Route;
-import com.travelplanner.service.RouteService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.travelplanner.repository.RouteRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/routes")
+@RequestMapping("/api/routes")
 public class RouteController {
+    private final RouteRepository routeRepository;
 
-    @Autowired
-    private RouteService routeService;
-
-    @GetMapping("/search")
-    public List<Route> getRoutes(@RequestParam Location source, @RequestParam Location destination) {
-        return routeService.getRoutesBySourceAndDestination(source, destination);
+    public RouteController(RouteRepository routeRepository) {
+        this.routeRepository = routeRepository;
     }
 
-    @PostMapping("/add")
-    public Route addRoute(@RequestBody Route route) {
-        return routeService.saveRoute(route);
+    @GetMapping
+    public List<Route> getAllRoutes() {
+        return routeRepository.findAll();
     }
 }

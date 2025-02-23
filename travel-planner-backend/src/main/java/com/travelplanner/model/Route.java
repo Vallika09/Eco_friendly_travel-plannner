@@ -1,12 +1,8 @@
 package com.travelplanner.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
-@Data
-@NoArgsConstructor  // Generates a default constructor (needed by JPA)
-@AllArgsConstructor // Generates a constructor with all fields
 @Table(name = "routes")
 public class Route {
 
@@ -15,30 +11,47 @@ public class Route {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "source_id", nullable = false)
-    private Location source;
+    @JoinColumn(name = "start_location_id", referencedColumnName = "id", nullable = false)
+    private Location startLocation;
 
     @ManyToOne
-    @JoinColumn(name = "destination_id", nullable = false)
-    private Location destination;
+    @JoinColumn(name = "end_location_id", referencedColumnName = "id", nullable = false)
+    private Location endLocation;
 
     @Column(nullable = false)
-    private double distance; // in kilometers
+    private double distance;
 
     @Column(nullable = false)
-    private double travelTime; // in hours
+    private double travelTime;
 
     @Column(nullable = false)
-    private boolean ecoFriendly; // Marks green routes
+    private boolean ecoFriendly;
 
     public Route() {}
-    
-    // ✅ Custom constructor for easy object creation
-    public Route(Location source, Location destination, double distance, double travelTime, boolean ecoFriendly) {
-        this.source = source;
-        this.destination = destination;
+
+    public Route(Location startLocation, Location endLocation, double distance, double travelTime, boolean ecoFriendly) {
+        this.startLocation = startLocation;
+        this.endLocation = endLocation;
         this.distance = distance;
         this.travelTime = travelTime;
         this.ecoFriendly = ecoFriendly;
     }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public Location getStartLocation() { return startLocation; }
+    public void setStartLocation(Location startLocation) { this.startLocation = startLocation; }
+
+    public Location getEndLocation() { return endLocation; }
+    public void setEndLocation(Location endLocation) { this.endLocation = endLocation; }
+
+    public double getDistance() { return distance; }
+    public void setDistance(double distance) { this.distance = distance; }
+
+    public double getTravelTime() { return travelTime; }
+    public void setTravelTime(double travelTime) { this.travelTime = travelTime; }
+
+    public boolean isEcoFriendly() { return ecoFriendly; }
+    public void setEcoFriendly(boolean ecoFriendly) { this.ecoFriendly = ecoFriendly; }
 }
