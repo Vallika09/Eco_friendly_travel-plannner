@@ -1,7 +1,8 @@
 package com.travelplanner.controller;
 
 import com.travelplanner.model.Route;
-import com.travelplanner.repository.RouteRepository;
+import com.travelplanner.service.RouteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,14 +10,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/routes")
 public class RouteController {
-    private final RouteRepository routeRepository;
 
-    public RouteController(RouteRepository routeRepository) {
-        this.routeRepository = routeRepository;
-    }
+    @Autowired
+    private RouteService routeService;
 
     @GetMapping
     public List<Route> getAllRoutes() {
-        return routeRepository.findAll();
+        return routeService.getAllRoutes();
+    }
+
+    @PostMapping
+    public Route addRoute(@RequestBody Route route) {
+        return routeService.addRoute(route);
     }
 }
