@@ -3,9 +3,12 @@ package com.travelplanner.service;
 import com.travelplanner.model.Route;
 import com.travelplanner.repository.RouteRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import jakarta.annotation.PostConstruct;
 import java.util.*;
 
 @Service
+@Transactional
 public class RouteService {
     private final RouteRepository routeRepository;
     private final Map<String, List<Route>> adjacencyList = new HashMap<>();
@@ -15,6 +18,7 @@ public class RouteService {
         loadRoutes();
     }
 
+    @PostConstruct
     private void loadRoutes() {
         List<Route> routes = routeRepository.findAll();
         for (Route route : routes) {
