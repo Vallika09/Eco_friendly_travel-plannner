@@ -1,0 +1,149 @@
+.footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 60px 0 20px;
+  }
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 15px;
+  }
+  
+  .footer-logo i {
+    margin-right: 10px;
+  }
+  
+  .footer-column p {
+    opacity: 0.8;
+    margin-bottom: 20px;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--white);
+    transition: var(--transition);
+  }
+  
+  .social-links a:hover {
+    background-color: var(--white);
+    color: var(--primary-dark);
+  }
+  
+  .footer-column h3 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+  
+  .footer-links li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-links a {
+    color: var(--white);
+    opacity: 0.8;
+    transition: var(--transition);
+  }
+  
+  .footer-links a:hover {
+    opacity: 1;
+  }
+  
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .subscribe-form .input-icon {
+    margin-bottom: 10px;
+  }
+  
+  .subscribe-form input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--white);
+  }
+  
+  .subscribe-form input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  .subscribe-form .btn {
+    width: 100%;
+  }
+  
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .footer-bottom p {
+    opacity: 0.7;
+    margin-bottom: 0;
+  }
+  
+  .footer-legal {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-legal a {
+    color: var(--white);
+    opacity: 0.7;
+    font-size: 0.9rem;
+  }
+  
+  .footer-legal a:hover {
+    opacity: 1;
+  }
+  
+  @media (max-width: 1024px) {
+    .footer-content {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .footer-bottom {
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
+    }
+  
+    .footer-legal {
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  
