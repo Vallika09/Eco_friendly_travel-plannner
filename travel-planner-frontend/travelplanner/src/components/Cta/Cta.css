@@ -1,0 +1,17 @@
+.cta {
+    background-color: var(--white);
+    text-align: center;
+  }
+  
+  .cta h2 {
+    margin-bottom: 15px;
+  }
+  
+  .cta p {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    font-size: 1.1rem;
+    color: var(--text-light);
+  }
+  
+  

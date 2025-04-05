@@ -58,4 +58,16 @@ public class Route {
 
     public boolean isEcoFriendly() { return ecoFriendly; }
     public void setEcoFriendly(boolean ecoFriendly) { this.ecoFriendly = ecoFriendly; }
+    
+    @Override
+    public String toString() {
+        return "Route{" +
+                "start=" + (startLocation != null ? startLocation.getName() : "Unknown") +
+                ", end=" + (endLocation != null ? endLocation.getName() : "Unknown") +
+                ", distance=" + distance +
+                ", travelTime=" + travelTime +
+                ", ecoFriendly=" + ecoFriendly +
+                '}';
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.travelplanner.repository;
+	package com.travelplanner.repository;
 
 import com.travelplanner.model.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
