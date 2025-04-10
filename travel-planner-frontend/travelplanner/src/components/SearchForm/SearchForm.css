@@ -124,3 +124,13 @@
     grid-template-columns: 1fr;
   }
 }
+.route-steps {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust the gap between steps as needed */
+}
+
+.route-steps i {
+  font-size: 1.2rem; /* Adjust the size of the arrow icon */
+  color: var(--primary-color); /* Match the color to your theme */
+}

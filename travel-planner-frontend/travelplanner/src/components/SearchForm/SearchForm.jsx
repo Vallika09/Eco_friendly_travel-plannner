@@ -1,6 +1,4 @@
-"use client"
-
-import { useState } from "react";
+import React, { useState } from "react";
 import "./SearchForm.css";
 
 const cities = [
@@ -60,7 +58,7 @@ const SearchForm = () => {
       const data = await response.json();
       console.log("API Response:", data);
       setApiResponse(data);
-      alert(`Shortest route from ${formData.from} to ${formData.to} fetched successfully.`);
+      // alert(`Shortest route from ${formData.from} to ${formData.to} fetched successfully.`);
     } catch (error) {
       console.error("Error fetching route:", error);
       alert("Failed to fetch route. Please try again.");
@@ -149,11 +147,13 @@ const SearchForm = () => {
       {apiResponse.length > 0 ? (
         <div className="api-response">
           <h3>Shortest Route:</h3>
-          <ul>
+          <div className="route-steps">
             {apiResponse.map((city, index) => (
-              <li key={index}>{city}</li>
+              <span key={index}>
+                {city} {index < apiResponse.length - 1 && <i className="fas fa-arrow-right"></i>}
+              </span>
             ))}
-          </ul>
+          </div>
         </div>
       ) : (
         apiResponse.length === 0 && <div className="api-response">No path found.</div>
