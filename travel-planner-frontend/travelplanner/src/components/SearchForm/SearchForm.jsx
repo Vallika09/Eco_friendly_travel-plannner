@@ -3,6 +3,19 @@
 import { useState } from "react"
 import "./SearchForm.css"
 
+const cities = [
+  "Mumbai", "Delhi", "Bangalore", "Hyderabad", "Ahmedabad", "Chennai", "Kolkata", "Pune",
+  "Jaipur", "Lucknow", "Kanpur", "Nagpur", "Indore", "Thane", "Bhopal", "Visakhapatnam",
+  "Patna", "Vadodara", "Ghaziabad", "Ludhiana", "Agra", "Nashik", "Meerut", "Faridabad",
+  "Rajkot", "Varanasi", "Srinagar", "Aurangabad", "Dhanbad", "Amritsar", "Allahabad",
+  "Ranchi", "Coimbatore", "Jodhpur", "Guwahati", "Gwalior", "Chandigarh", "Solapur",
+  "Hubli", "Tiruchirappalli", "Kota", "Salem", "Bhubaneswar", "Mysore", "Jalandhar",
+  "Guntur", "Bikaner", "Jamshedpur", "Warangal", "Cuttack", "Ujjain", "Belgaum", "Ajmer",
+  "Jhansi", "Ulhasnagar", "Dehradun", "Nellore", "Tirunelveli", "Muzaffarpur", "Hosur",
+  "Moradabad", "Gaya", "Udaipur", "Mathura", "Ambala", "Siliguri", "Nanded", "Imphal",
+  "Shillong", "Noida", "Thrissur"
+]
+
 const SearchForm = () => {
   const [formData, setFormData] = useState({
     from: "",
@@ -38,11 +51,17 @@ const SearchForm = () => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // In a real app, you would send this data to your backend
-    console.log("Form submitted:", formData)
-    alert(`Searching for eco-friendly routes from ${formData.from} to ${formData.to}`)
+    try {
+      const response = await fetch(`http://localhost:8080/api/routes/shortest-path?start=${formData.from}&end=${formData.to}`)
+      const data = await response.json()
+      console.log("API Response:", data)
+      alert(`Shortest route from ${formData.from} to ${formData.to} fetched successfully.`)
+    } catch (error) {
+      console.error("Error fetching route:", error)
+      alert("Failed to fetch route. Please try again.")
+    }
   }
 
   return (
@@ -52,15 +71,12 @@ const SearchForm = () => {
           <label htmlFor="from">From</label>
           <div className="input-icon">
             <i className="fas fa-search"></i>
-            <input
-              type="text"
-              id="from"
-              name="from"
-              placeholder="City or Airport"
-              value={formData.from}
-              onChange={handleInputChange}
-              required
-            />
+            <select id="from" name="from" value={formData.from} onChange={handleInputChange} required>
+              <option value="">Select City</option>
+              {cities.map((city, index) => (
+                <option key={index} value={city}>{city}</option>
+              ))}
+            </select>
           </div>
         </div>
 
@@ -68,15 +84,12 @@ const SearchForm = () => {
           <label htmlFor="to">To</label>
           <div className="input-icon">
             <i className="fas fa-search"></i>
-            <input
-              type="text"
-              id="to"
-              name="to"
-              placeholder="City or Airport"
-              value={formData.to}
-              onChange={handleInputChange}
-              required
-            />
+            <select id="to" name="to" value={formData.to} onChange={handleInputChange} required>
+              <option value="">Select City</option>
+              {cities.map((city, index) => (
+                <option key={index} value={city}>{city}</option>
+              ))}
+            </select>
           </div>
         </div>
 
@@ -106,66 +119,18 @@ const SearchForm = () => {
       <div className="eco-options">
         <h3>Eco-Friendly Options</h3>
         <div className="checkbox-grid">
-          <div className="checkbox-item">
-            <input
-              type="checkbox"
-              id="ecoRoute"
-              name="ecoRoute"
-              checked={formData.ecoOptions.ecoRoute}
-              onChange={handleCheckboxChange}
-            />
-            <label htmlFor="ecoRoute">Eco-Friendly Route</label>
-          </div>
-          <div className="checkbox-item">
-            <input
-              type="checkbox"
-              id="carbonOffset"
-              name="carbonOffset"
-              checked={formData.ecoOptions.carbonOffset}
-              onChange={handleCheckboxChange}
-            />
-            <label htmlFor="carbonOffset">Carbon Offset</label>
-          </div>
-          <div className="checkbox-item">
-            <input
-              type="checkbox"
-              id="publicTransport"
-              name="publicTransport"
-              checked={formData.ecoOptions.publicTransport}
-              onChange={handleCheckboxChange}
-            />
-            <label htmlFor="publicTransport">Public Transport Only</label>
-          </div>
-          <div className="checkbox-item">
-            <input
-              type="checkbox"
-              id="ecoHotels"
-              name="ecoHotels"
-              checked={formData.ecoOptions.ecoHotels}
-              onChange={handleCheckboxChange}
-            />
-            <label htmlFor="ecoHotels">Eco-Certified Hotels</label>
-          </div>
-          <div className="checkbox-item">
-            <input
-              type="checkbox"
-              id="bikeFriendly"
-              name="bikeFriendly"
-              checked={formData.ecoOptions.bikeFriendly}
-              onChange={handleCheckboxChange}
-            />
-            <label htmlFor="bikeFriendly">Bike-Friendly</label>
-          </div>
-          <div className="checkbox-item">
-            <input
-              type="checkbox"
-              id="localExperiences"
-              name="localExperiences"
-              checked={formData.ecoOptions.localExperiences}
-              onChange={handleCheckboxChange}
-            />
-            <label htmlFor="localExperiences">Local Experiences</label>
-          </div>
+          {Object.entries(formData.ecoOptions).map(([key, value]) => (
+            <div key={key} className="checkbox-item">
+              <input
+                type="checkbox"
+                id={key}
+                name={key}
+                checked={value}
+                onChange={handleCheckboxChange}
+              />
+              <label htmlFor={key}>{key.replace(/([A-Z])/g, ' $1')}</label>
+            </div>
+          ))}
         </div>
       </div>
 
