@@ -1,0 +1,36 @@
+.blog.container {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+  }
+  
+  .blog-card {
+    background-color: var(--primary-light);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-light);
+    transition: transform 0.3s ease;
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .blog-card h3 {
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+  }
+  
+  .blog-card a {
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
