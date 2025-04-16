@@ -6,8 +6,9 @@ import About from "./pages/About";
 import Destinations from "./pages/Destinations";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
+import Login from "./pages/Login";       // ✅ Added Login page
+import Register from "./pages/Register"; // ✅ Added Register page
 import "./App.css";
-
 
 const App = () => {
   return (
@@ -18,6 +19,8 @@ const App = () => {
         <Route path="/destinations" element={<Destinations />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/login" element={<Login />} />         {/* ✅ Login Route */}
+        <Route path="/register" element={<Register />} />   {/* ✅ Register Route */}
       </Routes>
     </Router>
   );
