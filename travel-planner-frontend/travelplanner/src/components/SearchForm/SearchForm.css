@@ -1,3 +1,24 @@
+/* Form Container Centering */
+.search-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: var(--background-light); /* Optional: background for the whole section */
+}
+
+/* Search Form Styling */
+.search-form {
+  max-width: 800px;
+  width: 100%;
+  background: var(--white);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Layout */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -16,6 +37,7 @@
   color: var(--text-dark);
 }
 
+/* Input with Icon */
 .input-icon {
   position: relative;
 }
@@ -45,6 +67,7 @@
   box-shadow: 0 0 0 2px rgba(46, 139, 87, 0.2);
 }
 
+/* Eco Option Checkboxes */
 .eco-options h3 {
   margin-bottom: 15px;
   font-size: 1.2rem;
@@ -68,12 +91,13 @@
   accent-color: var(--primary-color);
 }
 
+/* Submit Button Section */
 .form-submit {
   text-align: center;
   margin-top: 30px;
 }
 
-/* Updated styles for API response */
+/* API Response Styling */
 .api-response {
   margin-top: 30px;
   padding: 20px;
@@ -90,7 +114,7 @@
 }
 
 .api-response ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
 }
 
@@ -109,6 +133,19 @@
   margin-bottom: 0;
 }
 
+/* Route Step Icons */
+.route-steps {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.route-steps i {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .form-grid {
     grid-template-columns: 1fr;
@@ -123,14 +160,4 @@
   .checkbox-grid {
     grid-template-columns: 1fr;
   }
-}
-.route-steps {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Adjust the gap between steps as needed */
-}
-
-.route-steps i {
-  font-size: 1.2rem; /* Adjust the size of the arrow icon */
-  color: var(--primary-color); /* Match the color to your theme */
 }
